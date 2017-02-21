@@ -10,6 +10,7 @@ func GetDrugByName(name string) {
 	if err != nil {
 		log.Println(err)
 	}
+	log.Println(resp)
 }
 
 func GetDrugByCIS(cis string) {
@@ -17,4 +18,5 @@ func GetDrugByCIS(cis string) {
 	if err != nil {
 		log.Println(err)
 	}
+	log.Println(resp)
 }
