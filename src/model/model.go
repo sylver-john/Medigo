@@ -56,4 +56,9 @@ type ConditionsPrescription struct {
 	Cis string
 }
 
+type Titulaire struct {
+	Id string
+	Titulaire []string
+}
+
 type Drugs [][]Drug

@@ -4,17 +4,24 @@ import (
 	"log"
 	"github.com/gin-gonic/gin"
 	"../service"
+	"../aggregator"
 )
 
 
 func Index(c *gin.Context) {
 	inventory := service.GetInventory()
 	drugs := service.GetDrugs(inventory[0:200])
-	for _, value := range drugs {
-		if value != nil && 0 < len(value) {
-			log.Println(value)
-			service.StoreDrug(value)
+	for _, drugCollection := range drugs {
+		if drugCollection != nil && 0 < len(drugCollection) {
+			log.Println(drugCollection)
+			service.StoreDrugCollection(drugCollection)
 		}
 	}
   	c.File("C:/Users/simhoff/Medigo/front/index.html")
+}
+
+func DrugsOrigins(c *gin.Context) {
+	drugsOrigins := service.GetDrugsorigins()
+	drugsOriginsPercent := aggregator.GetDrugOriginPercent(drugsOrigins)
+	c.JSON(200, drugsOriginsPercent)
 }

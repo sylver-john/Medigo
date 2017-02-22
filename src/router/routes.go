@@ -21,4 +21,10 @@ var routes = Routes{
 		"/index",
 		handler.Index,
 	},
+  Route{
+    "DrugsOrigins",
+    "GET",
+    "/drugsorigins",
+    handler.DrugsOrigins,
+  },
 }

@@ -4,17 +4,18 @@ import(
   "log"
   m "../model"
   "gopkg.in/mgo.v2"
+  "gopkg.in/mgo.v2/bson"
 )
 
 func connectToDb() *mgo.Session {
-  session, err := mgo.Dial("**********")
+  session, err := mgo.Dial("****")
   if err != nil {
     log.Fatal(err)
   }
   return session
 }
 
-func StoreDrug(drugs []m.Drug) {
+func StoreDrugCollection(drugs []m.Drug) {
   session := connectToDb()
   defer session.Close()
   collection := session.DB("medigo").C("drugs")
@@ -24,4 +25,16 @@ func StoreDrug(drugs []m.Drug) {
       log.Println(err)
     }
   }
+}
+
+func GetDrugsorigins() []m.Titulaire {
+  session := connectToDb()
+  defer session.Close()
+  collection := session.DB("medigo").C("drugs")
+  var result []m.Titulaire
+  err := collection.Find(bson.M{}).Select(bson.M{"titulaire": 1}).All(&result)
+  if err != nil {
+    log.Println(err)
+  }
+  return result
 }
