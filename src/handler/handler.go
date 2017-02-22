@@ -8,12 +8,11 @@ import (
 
 
 func Index(c *gin.Context) {
-	log.Println("index")
 	inventory := service.GetInventory()
-	drugs := service.GetDrugs(inventory[0:2])
+	drugs := service.GetDrugs(inventory[0:20])
 	for _, value := range drugs {
 		if value != nil {
-			log.Println(value[0].Nom)
+			log.Println(value)
 		}
 	}
   	c.File("C:/Users/simhoff/Medigo/front/index.html")
