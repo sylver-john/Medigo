@@ -57,7 +57,7 @@ type ConditionsPrescription struct {
 }
 
 type Titulaire struct {
-	Id string
+	Id        string
 	Titulaire []string
 }
 

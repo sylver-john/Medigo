@@ -1,12 +1,11 @@
 package handler
 
 import (
-	"log"
-	"github.com/gin-gonic/gin"
-	"../service"
 	"../aggregator"
+	"../service"
+	"github.com/gin-gonic/gin"
+	"log"
 )
-
 
 func Index(c *gin.Context) {
 	inventory := service.GetInventory()
@@ -17,7 +16,7 @@ func Index(c *gin.Context) {
 			service.StoreDrugCollection(drugCollection)
 		}
 	}
-  	c.File("C:/Users/simhoff/Medigo/front/index.html")
+	c.File("C:/Users/simhoff/Medigo/front/index.html")
 }
 
 func DrugsOrigins(c *gin.Context) {
