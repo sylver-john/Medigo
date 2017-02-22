@@ -27,4 +27,10 @@ var routes = Routes{
     "/drugsorigins",
     handler.DrugsOrigins,
   },
+  Route{
+    "BaseUpdate",
+    "GET",
+    "/baseupdate",
+    handler.BaseUpdate,
+  },
 }

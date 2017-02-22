@@ -8,6 +8,16 @@ import (
 )
 
 func Index(c *gin.Context) {
+	c.File("C:/Users/simhoff/Medigo/front/index.html")
+}
+
+func DrugsOrigins(c *gin.Context) {
+	drugsOrigins := service.GetDrugsorigins()
+	drugsOriginsPercent := aggregator.GetDrugOriginPercent(drugsOrigins)
+	c.JSON(200, drugsOriginsPercent)
+}
+
+func BaseUpdate(c *gin.Context) {
 	inventory := service.GetInventory()
 	drugs := service.GetDrugs(inventory[0:200])
 	for _, drugCollection := range drugs {
@@ -16,11 +26,4 @@ func Index(c *gin.Context) {
 			service.StoreDrugCollection(drugCollection)
 		}
 	}
-	c.File("C:/Users/simhoff/Medigo/front/index.html")
-}
-
-func DrugsOrigins(c *gin.Context) {
-	drugsOrigins := service.GetDrugsorigins()
-	drugsOriginsPercent := aggregator.GetDrugOriginPercent(drugsOrigins)
-	c.JSON(200, drugsOriginsPercent)
 }
