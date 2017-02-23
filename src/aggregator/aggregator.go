@@ -1,8 +1,9 @@
 package aggregator
 
 import (
-	m "../model"
 	"log"
+	//"time"
+	m "../model"
 )
 
 func GetDrugOriginPercent(drugOrigins []m.Titulaire) map[string]float32 {
@@ -20,4 +21,10 @@ func GetDrugOriginPercent(drugOrigins []m.Titulaire) map[string]float32 {
 		}
 	}
 	return percent
+}
+
+func GetdrugsDatesPercent(drugDates []m.DateMiseSurLeMarche) map[string]float32 {
+		percent := make(map[string]float32)
+		percent["2000-2005"] = 100
+		return percent
 }

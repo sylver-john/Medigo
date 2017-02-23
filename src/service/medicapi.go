@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 	"net/url"
-	"unicode/utf8"
 )
 
 func GetDrugByName(name string) []m.Drug {
@@ -32,34 +31,32 @@ func GetDrugByName(name string) []m.Drug {
 	return drug
 }
 
-func GetDrugByCIS(cis string) {
+func GetDrugByCIS(cis string) m.Drug {
 	resp, err := http.Get("https://medicaments.api.gouv.fr/api/medicaments/" + cis)
+	var drug m.Drug
+	if err != nil && resp.StatusCode != 200 {
+		log.Println(err)
+		return drug
+	}
+	err = json.NewDecoder(resp.Body).Decode(&drug)
 	if err != nil {
 		log.Println(err)
 	}
-	log.Println(resp)
+	return drug
 }
 
-func GetDrugs(names []string) m.Drugs {
-	var drugs m.Drugs
-	for i := 0; i < len(names); i++ {
-		if utf8.ValidString(names[i]) {
-			drugs = append(drugs, GetDrugByName(names[i]))
-		} else {
-			log.Println("invalid format name")
-		}
+func GetDrugs(cis []string) []m.Drug {
+	var drugs []m.Drug
+	for i := 0; i < len(cis); i++ {
+			drugs = append(drugs, GetDrugByCIS(cis[i]))
 	}
 	return drugs
 }
 
-func GetDrugsAndStore(names <-chan string, results chan<- bool) {
-	for name := range names {
-		drugCollection := GetDrugByName(name)
-		if drugCollection != nil && 0 < len(drugCollection) {
-			StoreDrugCollection(drugCollection)
-			results<- true
-		} else {
-			results<- false
-		}
+func GetDrugsAndStore(cisList <-chan string, results chan<- bool) {
+	for cis := range cisList {
+		drugs := GetDrugByCIS(cis)
+		StoreDrug(drugs)
+		results<- false
 	}
 }

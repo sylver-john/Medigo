@@ -61,6 +61,11 @@ type Titulaire struct {
 	Titulaire []string
 }
 
+type DateMiseSurLeMarche struct {
+	Id	string
+	DateMiseSurLeMarche string
+}
+
 type Drugs [][]Drug
 
 type Config struct {

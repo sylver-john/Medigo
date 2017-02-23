@@ -28,7 +28,17 @@ func StoreDrugCollection(drugs []m.Drug) {
 	}
 }
 
-func GetDrugsorigins() []m.Titulaire {
+func StoreDrug(drug m.Drug) {
+	session := connectToDb()
+	defer session.Close()
+	collection := session.DB("medigo").C("drugs")
+	err := collection.Insert(drug)
+	if err != nil {
+		log.Println(err)
+	}
+}
+
+func GetDrugsOrigins() []m.Titulaire {
 	session := connectToDb()
 	defer session.Close()
 	collection := session.DB("medigo").C("drugs")
@@ -39,3 +49,19 @@ func GetDrugsorigins() []m.Titulaire {
 	}
 	return result
 }
+
+func GetDrugMarketingDates() []m.DateMiseSurLeMarche {
+	session := connectToDb()
+	defer session.Close()
+	collection := session.DB("medigo").C("drugs")
+	var result []m.DateMiseSurLeMarche
+	err := collection.Find(bson.M{}).Select(bson.M{"datemisesurleMarche": 1}).All(&result)
+	if err != nil {
+		log.Println(err)
+	}
+	return result
+}
+
+// func CheckDrugAlreadyInserted(collection *mgo.Collection, cis string) {
+// 	err := collection.Find(bson.M{}).
+// }
