@@ -36,6 +36,7 @@ func StoreDrug(drug m.Drug) {
 	if err != nil {
 		log.Println(err)
 	}
+	log.Println(drug.Cis, "stored")
 }
 
 func GetDrugsOrigins() []m.Titulaire {
