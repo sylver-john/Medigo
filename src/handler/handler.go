@@ -30,11 +30,11 @@ func BaseUpdateGoroutine(c *gin.Context) {
 	for i := 0; i < 10; i++ {
 		go service.GetDrugsAndStore(names, results)
 	}
-	for j := 0; j < 200; j++ {
-		names<- inventory[j]
+	for j := 0; j < len(inventory); j++ {
+		names <- inventory[j]
 	}
 	close(names)
-	for k := 0; k < 200; k++ {
+	for k := 0; k < len(inventory); k++ {
 		<-results
 	}
 	close(results)

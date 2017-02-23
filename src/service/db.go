@@ -60,9 +60,6 @@ func GetDrugMarketingDates() []m.DateMiseSurLeMarche {
 	if err != nil {
 		log.Println(err)
 	}
+	log.Println(result[0].DateMiseSurLeMarche)
 	return result
 }
-
-// func CheckDrugAlreadyInserted(collection *mgo.Collection, cis string) {
-// 	err := collection.Find(bson.M{}).
-// }

@@ -49,7 +49,7 @@ func GetDrugByCIS(cis string) m.Drug {
 func GetDrugs(cis []string) []m.Drug {
 	var drugs []m.Drug
 	for i := 0; i < len(cis); i++ {
-			drugs = append(drugs, GetDrugByCIS(cis[i]))
+		drugs = append(drugs, GetDrugByCIS(cis[i]))
 	}
 	return drugs
 }
@@ -58,6 +58,6 @@ func GetDrugsAndStore(cisList <-chan string, results chan<- bool) {
 	for cis := range cisList {
 		drugs := GetDrugByCIS(cis)
 		StoreDrug(drugs)
-		results<- false
+		results <- false
 	}
 }
