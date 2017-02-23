@@ -62,3 +62,10 @@ type Titulaire struct {
 }
 
 type Drugs [][]Drug
+
+type Config struct {
+	Username	string
+	Password	string
+	Host			string
+	Database	string
+}

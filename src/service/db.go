@@ -8,7 +8,8 @@ import (
 )
 
 func connectToDb() *mgo.Session {
-	session, err := mgo.Dial("****")
+	conf := GetConf()
+	session, err := mgo.Dial("mongodb://" + conf.Username + ":" + conf.Password + "@" + conf.Host + "/" + conf.Database)
 	if err != nil {
 		log.Fatal(err)
 	}
