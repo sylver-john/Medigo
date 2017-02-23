@@ -33,6 +33,7 @@ func GetDrugByName(name string) []m.Drug {
 
 func GetDrugByCIS(cis string) m.Drug {
 	resp, err := http.Get("https://medicaments.api.gouv.fr/api/medicaments/" + cis)
+	log.Println("https://medicaments.api.gouv.fr/api/medicaments/" + cis)
 	var drug m.Drug
 	if err != nil && resp.StatusCode != 200 {
 		log.Println(err)
