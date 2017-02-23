@@ -33,4 +33,10 @@ var routes = Routes{
     "/baseupdate",
     handler.BaseUpdate,
   },
+  Route{
+    "BaseUpdateGoroutine",
+    "GET",
+    "/baseupdategoroutine",
+    handler.BaseUpdateGoroutine,
+  },
 }

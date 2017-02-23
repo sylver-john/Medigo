@@ -51,3 +51,15 @@ func GetDrugs(names []string) m.Drugs {
 	}
 	return drugs
 }
+
+func GetDrugsAndStore(names <-chan string, results chan<- bool) {
+	for name := range names {
+		drugCollection := GetDrugByName(name)
+		if drugCollection != nil && 0 < len(drugCollection) {
+			StoreDrugCollection(drugCollection)
+			results<- true
+		} else {
+			results<- false
+		}
+	}
+}
