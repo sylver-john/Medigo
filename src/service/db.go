@@ -56,10 +56,9 @@ func GetDrugMarketingDates() []m.DateMiseSurLeMarche {
 	defer session.Close()
 	collection := session.DB("medigo").C("drugs")
 	var result []m.DateMiseSurLeMarche
-	err := collection.Find(bson.M{}).Select(bson.M{"datemisesurleMarche": 1}).All(&result)
+	err := collection.Find(bson.M{}).Select(bson.M{"datemisesurlemarche": 1}).All(&result)
 	if err != nil {
 		log.Println(err)
 	}
-	log.Println(result[0].DateMiseSurLeMarche)
 	return result
 }

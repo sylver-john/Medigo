@@ -25,6 +25,16 @@ func GetDrugOriginPercent(drugOrigins []m.Titulaire) map[string]float32 {
 
 func GetdrugsDatesPercent(drugDates []m.DateMiseSurLeMarche) map[string]float32 {
 	percent := make(map[string]float32)
+	percent["1990"] = 0
+	percent["1991"] = 0
+	percent["1992"] = 0
+	percent["1993"] = 0
+	percent["1994"] = 0
+	percent["1995"] = 0
+	percent["1996"] = 0
+	percent["1997"] = 0
+	percent["1998"] = 0
+	percent["1999"] = 0
 	percent["2000"] = 0
 	percent["2001"] = 0
 	percent["2002"] = 0
@@ -44,12 +54,14 @@ func GetdrugsDatesPercent(drugDates []m.DateMiseSurLeMarche) map[string]float32 
 	percent["2016"] = 0
 	percent["2017"] = 0
 	for _, date := range drugDates {
-		s := strings.Split(date.DateMiseSurLeMarche, "/")
-		log.Println(s)
-		log.Println(s[0])
-		if _, ok := percent[s[2]]; ok {
-			percent[s[2]] += 1
+			s := strings.Split(date.DateMiseSurLeMarche, "/")
+			if len(s) > 0 {
+				log.Println(s[2])
+				log.Println(percent[s[2]])
+				if  _, ok := percent[s[2]]; ok {
+					percent[s[2]] += 1
+				}
+			}
 		}
-	}
 	return percent
 }
