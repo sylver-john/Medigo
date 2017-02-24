@@ -84,11 +84,11 @@ func GetDrugMarketingDatesFromBase() []m.DateMiseSurLeMarche {
 	return result
 }
 
-func GetDrugsOrigins() []m.Titulaire {
+func GetDrugsOrigins() []interface{} {
 	session := connectToDb()
 	defer session.Close()
 	collection := session.DB("medigo").C("drugsorigins")
-	var result []m.Titulaire
+	result :=  make([]interface{}, 0)
 	err := collection.Find(bson.M{}).All(&result)
 	if err != nil {
 		log.Fatal(err)
@@ -96,11 +96,11 @@ func GetDrugsOrigins() []m.Titulaire {
 	return result
 }
 
-func GetDrugMarketingDates() []m.DateMiseSurLeMarche {
+func GetDrugMarketingDates() []interface{} {
 	session := connectToDb()
 	defer session.Close()
 	collection := session.DB("medigo").C("drugsdates")
-	var result []m.DateMiseSurLeMarche
+	result :=  make([]interface{}, 0)
 	err := collection.Find(bson.M{}).All(&result)
 	if err != nil {
 		log.Fatal(err)
