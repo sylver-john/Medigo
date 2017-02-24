@@ -55,9 +55,7 @@ func GetdrugsDatesPercent(drugDates []m.DateMiseSurLeMarche) map[string]float32 
 	percent["2017"] = 0
 	for _, date := range drugDates {
 			s := strings.Split(date.DateMiseSurLeMarche, "/")
-			if len(s) > 0 {
-				log.Println(s[2])
-				log.Println(percent[s[2]])
+			if len(s) > 2 {
 				if  _, ok := percent[s[2]]; ok {
 					percent[s[2]] += 1
 				}
