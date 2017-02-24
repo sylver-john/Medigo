@@ -60,7 +60,7 @@ func StoreDrugsDates(drugdates map[string]float32) {
 	log.Println("drugdates stored")
 }
 
-func GetDrugsOrigins() []m.Titulaire {
+func GetDrugsOriginsFromBase() []m.Titulaire {
 	session := connectToDb()
 	defer session.Close()
 	collection := session.DB("medigo").C("drugs")
@@ -72,12 +72,36 @@ func GetDrugsOrigins() []m.Titulaire {
 	return result
 }
 
-func GetDrugMarketingDates() []m.DateMiseSurLeMarche {
+func GetDrugMarketingDatesFromBase() []m.DateMiseSurLeMarche {
 	session := connectToDb()
 	defer session.Close()
 	collection := session.DB("medigo").C("drugs")
 	var result []m.DateMiseSurLeMarche
 	err := collection.Find(bson.M{}).Select(bson.M{"datemisesurlemarche": 1}).All(&result)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return result
+}
+
+func GetDrugsOrigins() []m.Titulaire {
+	session := connectToDb()
+	defer session.Close()
+	collection := session.DB("medigo").C("drugsorigins")
+	var result []m.Titulaire
+	err := collection.Find(bson.M{}).All(&result)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return result
+}
+
+func GetDrugMarketingDates() []m.DateMiseSurLeMarche {
+	session := connectToDb()
+	defer session.Close()
+	collection := session.DB("medigo").C("drugsdates")
+	var result []m.DateMiseSurLeMarche
+	err := collection.Find(bson.M{}).All(&result)
 	if err != nil {
 		log.Fatal(err)
 	}

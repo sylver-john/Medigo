@@ -6,19 +6,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Index(c *gin.Context) {
-	c.File("C:/Users/simhoff/Medigo/front/index.html")
-}
-
-func DrugsOrigins(c *gin.Context) {
-	drugsOrigins := service.GetDrugsOrigins()
+func DrugsOriginsFromBase(c *gin.Context) {
+	drugsOrigins := service.GetDrugsOriginsFromBase()
 	drugsOriginsPercent := aggregator.GetDrugOriginPercent(drugsOrigins)
 	service.StoreDrugsOrigins(drugsOriginsPercent)
 	c.JSON(200, drugsOriginsPercent)
 }
 
-func DrugsDates(c *gin.Context) {
-	drugsDates := service.GetDrugMarketingDates()
+func DrugsDatesFromBase(c *gin.Context) {
+	drugsDates := service.GetDrugMarketingDatesFromBase()
 	drugsDatesPercent := aggregator.GetdrugsDatesPercent(drugsDates)
 	service.StoreDrugsDates(drugsDatesPercent)
 	c.JSON(200, drugsDatesPercent)

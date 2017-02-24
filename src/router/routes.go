@@ -28,6 +28,18 @@ var routes = Routes{
     handler.DrugsOrigins,
   },
   Route{
+    "DrugsDatesFromBase",
+    "GET",
+    "/drugsdatesfrombase",
+    handler.DrugsDatesFromBase,
+  },
+  Route{
+    "DrugsOriginsFromBase",
+    "GET",
+    "/drugsoriginsfrombase",
+    handler.DrugsOriginsFromBase,
+  },
+  Route{
     "DrugsDates",
     "GET",
     "/drugsdates",
