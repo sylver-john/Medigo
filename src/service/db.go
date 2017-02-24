@@ -23,7 +23,7 @@ func StoreDrugCollection(drugs []m.Drug) {
 	for i := 0; i < len(drugs); i++ {
 		err := collection.Insert(drugs[i])
 		if err != nil {
-			log.Println(err)
+			log.Fatal(err)
 		}
 	}
 }
@@ -34,9 +34,30 @@ func StoreDrug(drug m.Drug) {
 	collection := session.DB("medigo").C("drugs")
 	err := collection.Insert(drug)
 	if err != nil {
-		log.Println(err)
+		log.Fatal(err)
 	}
 	log.Println(drug.Cis, "stored")
+}
+
+func StoreDrugsOrigins(drugOrigins map[string]float32) {
+	session := connectToDb()
+	defer session.Close()
+	collection := session.DB("medigo").C("drugsorigins")
+	err := collection.Insert(drugOrigins)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println("drugOrigins stored")
+}
+func StoreDrugsDates(drugdates map[string]float32) {
+	session := connectToDb()
+	defer session.Close()
+	collection := session.DB("medigo").C("drugsdates")
+	err := collection.Insert(drugdates)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println("drugdates stored")
 }
 
 func GetDrugsOrigins() []m.Titulaire {
@@ -46,7 +67,7 @@ func GetDrugsOrigins() []m.Titulaire {
 	var result []m.Titulaire
 	err := collection.Find(bson.M{}).Select(bson.M{"titulaire": 1}).All(&result)
 	if err != nil {
-		log.Println(err)
+		log.Fatal(err)
 	}
 	return result
 }
@@ -58,7 +79,7 @@ func GetDrugMarketingDates() []m.DateMiseSurLeMarche {
 	var result []m.DateMiseSurLeMarche
 	err := collection.Find(bson.M{}).Select(bson.M{"datemisesurlemarche": 1}).All(&result)
 	if err != nil {
-		log.Println(err)
+		log.Fatal(err)
 	}
 	return result
 }

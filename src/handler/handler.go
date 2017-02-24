@@ -13,12 +13,14 @@ func Index(c *gin.Context) {
 func DrugsOrigins(c *gin.Context) {
 	drugsOrigins := service.GetDrugsOrigins()
 	drugsOriginsPercent := aggregator.GetDrugOriginPercent(drugsOrigins)
+	service.StoreDrugsOrigins(drugsOriginsPercent)
 	c.JSON(200, drugsOriginsPercent)
 }
 
 func DrugsDates(c *gin.Context) {
 	drugsDates := service.GetDrugMarketingDates()
 	drugsDatesPercent := aggregator.GetdrugsDatesPercent(drugsDates)
+	service.StoreDrugsDates(drugsDatesPercent)
 	c.JSON(200, drugsDatesPercent)
 }
 
