@@ -4,12 +4,12 @@ import(
   "log"
   "io/ioutil"
   "encoding/json"
-  m "medigo.com/model"
+  m "Medigo/model"
 )
 
 func GetConf() m.Config {
   var config m.Config
-	rawConfig, err := ioutil.ReadFile("C:/Users/sylver/Medigo/conf.json")
+	rawConfig, err := ioutil.ReadFile("C:/Projects/src/Medigo/conf.json")
 	if err != nil {
 		log.Fatal(err)
 	}

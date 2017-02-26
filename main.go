@@ -1,7 +1,7 @@
 package main
 
 import (
-  "github.com/sylver-john/Medigo/src/router"
+  "Medigo/router"
 )
 
 func main() {

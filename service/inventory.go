@@ -8,7 +8,7 @@ import(
 // Récupérer la liste des noms
 
 func GetInventory() []string {
-	content, err := ioutil.ReadFile("C:/Users/simhoff/cis.json")
+	content, err := ioutil.ReadFile("C:/Projects/src/Medigo/cis.json")
 	if err != nil {
 		log.Println(err)
 	}

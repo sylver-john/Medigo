@@ -2,7 +2,7 @@ package router
 
 import (
   "github.com/gin-gonic/gin"
-	"medigo.com//handler"
+	"Medigo/handler"
 )
 
 type Route struct {
