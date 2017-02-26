@@ -1,8 +1,8 @@
 package router
 
 import (
-  	"github.com/gin-gonic/gin"
-	"../handler"
+  "github.com/gin-gonic/gin"
+	"medigo.com//handler"
 )
 
 type Route struct {

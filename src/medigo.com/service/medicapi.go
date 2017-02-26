@@ -1,7 +1,7 @@
 package service
 
 import (
-	m "../model"
+	m "medigo.com/model"
 	"encoding/json"
 	"log"
 	"net/http"

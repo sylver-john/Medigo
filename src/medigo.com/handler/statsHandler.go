@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"../service"
+	"medigo.com/service"
 	"github.com/gin-gonic/gin"
 )
 
