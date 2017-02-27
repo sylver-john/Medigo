@@ -4,7 +4,7 @@ import(
   "log"
   "io/ioutil"
   "encoding/json"
-  m "Medigo/model"
+  m "Medigo/src/model"
 )
 
 func GetConf() m.Config {

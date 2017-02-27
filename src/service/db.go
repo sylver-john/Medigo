@@ -1,7 +1,7 @@
 package service
 
 import (
-	m "Medigo/model"
+	m "Medigo/src/model"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"log"
