@@ -22,33 +22,36 @@ var routes = Routes{
 		handler.Index,
 	},
   Route{
-    "DrugsOrigins",
+    "GetDrugsOrigins",
     "GET",
     "/drugsorigins",
-    handler.DrugsOrigins,
+    handler.GetDrugsOrigins,
   },
   Route{
-    "DrugsDatesFromBase",
-    "GET",
-    "/drugsdatesfrombase",
-    handler.DrugsDatesFromBase,
-  },
-  Route{
-    "DrugsOriginsFromBase",
-    "GET",
-    "/drugsoriginsfrombase",
-    handler.DrugsOriginsFromBase,
-  },
-  Route{
-    "DrugsDates",
+    "GetDrugsDates",
     "GET",
     "/drugsdates",
-    handler.DrugsDates,
-  },
-  Route{
-    "BaseUpdateGoroutine",
-    "GET",
-    "/baseupdategoroutine",
-    handler.BaseUpdateGoroutine,
+    handler.GetDrugsDates,
   },
 }
+
+/*
+Route{
+  "DrugsDatesFromBase",
+  "GET",
+  "/drugsdatesfrombase",
+  handler.DrugsDatesFromBase,
+},
+Route{
+  "DrugsOriginsFromBase",
+  "GET",
+  "/drugsoriginsfrombase",
+  handler.DrugsOriginsFromBase,
+},
+Route{
+  "BaseUpdateGoroutine",
+  "GET",
+  "/baseupdategoroutine",
+  handler.BaseUpdateGoroutine,
+},
+*/
