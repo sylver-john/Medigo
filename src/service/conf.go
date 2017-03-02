@@ -1,21 +1,22 @@
 package service
 
 import(
-  "log"
+  log "github.com/cihub/seelog"
   "io/ioutil"
   "encoding/json"
   m "Medigo/src/model"
 )
 
 func GetConf() m.Config {
+  defer log.Flush()
   var config m.Config
-	rawConfig, err := ioutil.ReadFile("C:/Projects/src/Medigo/conf.json")
+	rawConfig, err := ioutil.ReadFile("C:/users/simhoff/Perso/src/Medigo/conf.json")
 	if err != nil {
-		log.Fatal(err)
+		log.Info(err)
 	}
 	err = json.Unmarshal(rawConfig, &config)
 	if err != nil {
-    log.Fatal(err)
+    log.Info(err)
 	}
 	return config
 }
