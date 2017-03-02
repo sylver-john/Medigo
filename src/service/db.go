@@ -37,7 +37,7 @@ func StoreDrug(drug m.Drug) {
 	collection := session.DB("medigo").C("drugs")
 	err := collection.Insert(drug)
 	if err != nil {
-		log.Info(err)
+		log.Warn(err)
 	}
 	log.Info(drug.Cis, "stored")
 }
@@ -49,7 +49,7 @@ func StoreDrugsOrigins(drugOrigins map[string]float32) {
 	collection := session.DB("medigo").C("drugsorigins")
 	err := collection.Insert(drugOrigins)
 	if err != nil {
-		log.Info(err)
+		log.Warn(err)
 	}
 	log.Info("drugOrigins stored")
 }
@@ -60,7 +60,7 @@ func StoreDrugsDates(drugdates map[string]float32) {
 	collection := session.DB("medigo").C("drugsdates")
 	err := collection.Insert(drugdates)
 	if err != nil {
-		log.Info(err)
+		log.Warn(err)
 	}
 	log.Info("drugdates stored")
 }
@@ -73,12 +73,13 @@ func GetDrugsOriginsFromBase() []m.Titulaire {
 	var result []m.Titulaire
 	err := collection.Find(bson.M{}).Select(bson.M{"titulaire": 1}).All(&result)
 	if err != nil {
-		log.Info(err)
+		log.Warn(err)
 	}
 	return result
 }
 
 func GetDrugMarketingDatesFromBase() []m.DateMiseSurLeMarche {
+	SetLogger()
 	defer log.Flush()
 	session := connectToDb()
 	defer session.Close()
@@ -86,22 +87,13 @@ func GetDrugMarketingDatesFromBase() []m.DateMiseSurLeMarche {
 	var result []m.DateMiseSurLeMarche
 	err := collection.Find(bson.M{}).Select(bson.M{"datemisesurlemarche": 1}).All(&result)
 	if err != nil {
-		log.Info(err)
+		log.Warn(err)
 	}
 	return result
 }
 
 func GetDrugsOrigins() []interface{} {
-
-	testConfig := `
-	<seelog>
-	<outputs>
-		<file path="./log/log.log"/>
-	</outputs>
-	</seelog>
-	`
-	logger, _ := log.LoggerFromConfigAsBytes([]byte(testConfig))
-	log.ReplaceLogger(logger)
+	SetLogger()
 	defer log.Flush()
 	session := connectToDb()
 	defer session.Close()
@@ -109,13 +101,14 @@ func GetDrugsOrigins() []interface{} {
 	result :=  make([]interface{}, 0)
 	err := collection.Find(bson.M{}).All(&result)
 	if err != nil {
-		log.Info(err)
+		log.Warn(err)
 	}
 	log.Info(result)
 	return result
 }
 
 func GetDrugMarketingDates() []interface{} {
+	SetLogger()
 	defer log.Flush()
 	session := connectToDb()
 	defer session.Close()
@@ -123,7 +116,7 @@ func GetDrugMarketingDates() []interface{} {
 	result :=  make([]interface{}, 0)
 	err := collection.Find(bson.M{}).All(&result)
 	if err != nil {
-		log.Info(err)
+		log.Warn(err)
 	}
 	return result
 }
