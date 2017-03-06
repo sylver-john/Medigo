@@ -10,7 +10,7 @@ import(
 func GetConf() m.Config {
   defer log.Flush()
   var config m.Config
-	rawConfig, err := ioutil.ReadFile("C:/users/simhoff/Perso/src/Medigo/conf.json")
+	rawConfig, err := ioutil.ReadFile("conf.json")
 	if err != nil {
 		log.Info(err)
 	}

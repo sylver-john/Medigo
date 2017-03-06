@@ -2,9 +2,12 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
-	//"log"
+	"os"
+	"log"
 )
 
 func Index(c *gin.Context) {
-	c.File("C:/Projects/src/Medigo/front/index.html")
+	dir, _ := os.Getwd()
+	log.Println(dir)
+	c.File(dir + "/front/index.html")
 }
