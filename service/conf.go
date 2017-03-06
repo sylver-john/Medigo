@@ -4,7 +4,7 @@ import(
   log "github.com/cihub/seelog"
   "io/ioutil"
   "encoding/json"
-  m "github.com/sylver-john/Medigo/src/model"
+  m "github.com/sylver-john/Medigo/model"
 )
 
 func GetConf() m.Config {

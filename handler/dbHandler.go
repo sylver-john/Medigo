@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"github.com/sylver-john/Medigo/src/aggregator"
-	"github.com/sylver-john/Medigo/src/service"
+	"github.com/sylver-john/Medigo/aggregator"
+	"github.com/sylver-john/Medigo/service"
 	"github.com/gin-gonic/gin"
 )
 
