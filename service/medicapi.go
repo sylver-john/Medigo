@@ -1,7 +1,7 @@
 package service
 
 import (
-	m "Medigo/src/model"
+	m "github.com/sylver-john/Medigo/src/model"
 	"encoding/json"
 	log "github.com/cihub/seelog"
 	"net/http"

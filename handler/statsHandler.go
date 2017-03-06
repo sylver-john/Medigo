@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"Medigo/src/service"
+	"github.com/sylver-john/Medigo/src/service"
 	"github.com/gin-gonic/gin"
 )
 

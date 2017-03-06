@@ -1,7 +1,7 @@
 package aggregator
 
 import (
-	m "Medigo/src/model"
+	m "github.com/sylver-john/Medigo/src/model"
 	"strings"
 )
 
