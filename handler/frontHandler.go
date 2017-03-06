@@ -2,6 +2,7 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
+	//"log"
 )
 
 func Index(c *gin.Context) {
